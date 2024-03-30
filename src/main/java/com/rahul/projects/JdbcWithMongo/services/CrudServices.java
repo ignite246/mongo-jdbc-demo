@@ -127,11 +127,8 @@ public class CrudServices {
         Document query = new Document();
         query.put("student_name", oldName);
 
-        Document newDocument = new Document();
-        newDocument.put("student_name", newName);
-
         Document updateObject = new Document();
-        updateObject.put("$set", newDocument);
+        updateObject.put("$set", new Document("student_name",newName));
 
         final UpdateResult updateResult = collection.updateOne(query, updateObject);
         return updateResult;
@@ -139,16 +136,13 @@ public class CrudServices {
 
     public UpdateResult updateManyStudentsByName(String oldName, String newName) {
         MongoCollection<Document> collection = database.getCollection("students");
-        Document query = new Document();
-        query.put("student_name", oldName);
-
-        Document newDocument = new Document();
-        newDocument.put("student_name", newName);
+        Document selectionCriteria = new Document();
+        selectionCriteria.put("student_name", oldName);
 
         Document updateObject = new Document();
-        updateObject.put("$set", newDocument);
+        updateObject.put("$set", new Document("student_name",newName));
 
-        final UpdateResult updateResult = collection.updateMany(query, updateObject);
+        final UpdateResult updateResult = collection.updateMany(selectionCriteria, updateObject);
 
         return updateResult;
     }
