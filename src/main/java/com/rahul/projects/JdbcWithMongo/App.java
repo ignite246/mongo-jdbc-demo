@@ -14,15 +14,40 @@ public class App {
     static final CrudServices crudServices = new CrudServices();
 
     public static void main(String[] args) throws ParseException {
-        // testCreateRecord();
+        //testCreateRecord();
         // testUpdateGender();
         // testGetStudentsInAgeRange();
         // datetimeInGMT();
         // testFindStudentCreatedOnBeforeGivenDates();
         // testFindStudentLastUpdatedOnBeforeGivenDates();
-        testFindRecordsWithMultipleCondition();
+        //testFindRecordsWithMultipleCondition();
+       // getFemaleStudents();
+        //getStudentsAsGenderGroup();
+        //getDocWithAgeGroupAndCountOfStudents_Only_Females();
+        getDocWithAgeGroupAndCountOfStudents_Also_Count_Only_Females();
 
     }
+
+    //=================Aggregate==============================================
+    public static void getFemaleStudents() {
+        crudServices.getFemaleStudents();
+    }
+
+    public static void getStudentsAsGenderGroup(){
+        crudServices.makeGenderGroup();
+    }
+
+    public static void getDocWithAgeGroupAndCountOfStudents_Only_Females(){
+        crudServices.docWithAgeGroupAndCountOfStudents_Only_Females();
+    }
+
+    public static void getDocWithAgeGroupAndCountOfStudents_Also_Count_Only_Females(){
+        crudServices.docWithAgeGroupAndCountOfStudents_Also_Count_Only_Females();
+    }
+
+
+    //=========================================================================
+
 
     /*
     Find records:
@@ -39,14 +64,14 @@ public class App {
 
     public static void testCreateRecord() {
         Map<String, Object> record = new HashMap<>();
-        record.put("firstname", "Sonali");
+        record.put("firstname", "Manisha");
         record.put("lastname", "Singh");
-        record.put("age", 25);
+        record.put("age", 20);
         record.put("gender", "Female");
-        record.put("city", "Kolkata");
-        record.put("state", "WestBengal");
-        record.put("mother", "Ram");
-        record.put("father", "Sita");
+        record.put("city", "Patna");
+        record.put("state", "Bihar");
+        record.put("mother", "Bharat");
+        record.put("father", "Seetha");
         crudServices.saveStudent(record);
     }
 
